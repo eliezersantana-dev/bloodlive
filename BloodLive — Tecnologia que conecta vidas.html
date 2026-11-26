@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>BloodLive — Tecnologia que conecta vidas</title>
+<style>
+:root{--red:#B71C1C;--bg:#FFFFFF;--soft:#F5F5F5;--tx:#333333;--card:#FFFFFF;--bd:#E3E3E3;--acc:#B71C1C;--tint:#FDECEA;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1A1A1A;--soft:#242424;--tx:#EDEDED;--card:#2A2A2A;--bd:#444;--acc:#EF6C6C;--tint:#3A2222;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1A1A1A;--soft:#242424;--tx:#EDEDED;--card:#2A2A2A;--bd:#444;--acc:#EF6C6C;--tint:#3A2222;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--red);z-index:10}
+a{color:var(--acc)}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+header{position:sticky;top:env(safe-area-inset-top,0px);background:var(--red);color:#fff;z-index:11}
+header .wrap{display:flex;align-items:center;justify-content:space-between;min-height:60px;gap:12px}
+.logo{font-weight:800;font-size:22px;color:#fff;text-decoration:none}
+nav{display:flex;gap:4px;flex-wrap:wrap}
+nav a{color:#fff;text-decoration:none;padding:8px 12px;border-radius:8px;font-size:15px}
+nav a:hover,nav a[aria-current="page"]{background:rgba(255,255,255,.2)}
+#mb{display:none;background:none;border:2px solid #fff;color:#fff;border-radius:8px;padding:6px 12px;font-size:16px}
+@media(max-width:820px){#mb{display:block}nav{display:none;position:absolute;top:100%;left:0;right:0;background:var(--red);flex-direction:column;padding:8px 20px 16px}nav.open{display:flex}}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #FFB300;outline-offset:2px}
+main{padding:32px 0 56px;min-height:70vh}
+section[hidden]{display:none}
+h1{font-size:clamp(28px,5vw,44px);line-height:1.15;margin:0 0 12px}
+h2{font-size:26px;margin:0 0 8px;color:var(--acc)}
+h3{margin:0 0 6px;font-size:18px}
+.lead{font-size:18px;max-width:640px}
+.hero{background:var(--tint);border-radius:16px;padding:40px 28px;margin-bottom:28px}
+.btn{display:inline-block;background:var(--red);color:#fff;border:0;border-radius:10px;padding:12px 22px;font-size:16px;font-weight:600;text-decoration:none;cursor:pointer}
+.btn:hover{background:#8E1515}
+.btn.o{background:transparent;color:var(--acc);border:2px solid var(--acc)}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:18px}
+.tag{display:inline-block;background:var(--red);color:#fff;border-radius:999px;padding:2px 12px;font-size:13px;font-weight:700}
+.tag.g{background:var(--soft);color:var(--tx);border:1px solid var(--bd)}
+.types{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:12px 0 28px}
+.types div{background:var(--soft);border-radius:10px;padding:10px;text-align:center}
+.types b{display:block;font-size:20px;color:var(--acc)}
+details{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:12px 16px;margin-bottom:8px}
+summary{cursor:pointer;font-weight:600}
+input,select{font:inherit;padding:10px 12px;border:1px solid var(--bd);border-radius:8px;background:var(--card);color:var(--tx)}
+.bar{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 20px}
+.bar input{flex:1;min-width:200px}
+.tabs{display:flex;gap:8px;margin:14px 0 20px;flex-wrap:wrap}
+.tabs button{border:2px solid var(--acc);background:none;color:var(--acc);border-radius:999px;padding:6px 16px;font:inherit;font-weight:600;cursor:pointer}
+.tabs button[aria-pressed="true"]{background:var(--red);color:#fff;border-color:var(--red)}
+.q{margin:14px 0}
+.q label{margin-right:14px}
+#res{margin-top:16px;padding:16px;border-radius:10px;background:var(--tint);border-left:6px solid var(--red)}
+.note{font-size:14px;opacity:.8}
+.al{border-left:6px solid var(--red)}
+footer{background:var(--soft);padding:24px 0;font-size:14px;border-top:1px solid var(--bd)}
+#toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:#333;color:#fff;padding:10px 18px;border-radius:8px;display:none;z-index:20}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<a class="logo" href="#inicio">🩸 BloodLive</a>
+<button id="mb" aria-label="Abrir menu" aria-expanded="false">Menu</button>
+<nav id="nav" aria-label="Principal">
+<a href="#inicio">Início</a><a href="#requisitos">Requisitos para doar</a><a href="#hemocentros">Hemocentros</a><a href="#campanhas">Campanhas</a><a href="#alertas">Alertas</a><a href="#educacao">Educação</a>
+</nav></div></header>
+
+<main><div class="wrap">
+
+<section data-p="inicio">
+<div class="hero"><h1>Tecnologia que conecta vidas.</h1>
+<p class="lead">Informação confiável sobre doação de sangue, campanhas e hemocentros em um só lugar. Uma conexão pode salvar vidas.</p>
+<a class="btn" href="#requisitos">Quero ser um doador</a> <a class="btn o" href="#hemocentros">Encontrar hemocentros</a></div>
+<h2>Campanhas em andamento</h2><div class="grid" id="homeCamp"></div>
+<h2 style="margin-top:28px">Tipos sanguíneos</h2>
+<div class="types"><div><b>O−</b>Doador universal</div><div><b>AB+</b>Receptor universal</div><div><b>A / B</b>Compatibilidade própria</div><div><b>O+</b>Mais comum</div></div>
+<div class="card"><h3>Por que doar?</h3><p>Um único doador pode ajudar até 4 pessoas. O sangue não pode ser fabricado, depende da generosidade de voluntários.</p></div>
+</section>
+
+<section data-p="requisitos" hidden>
+<h2>Requisitos para doar</h2>
+<p>Critérios gerais. A avaliação definitiva é feita pelos profissionais do hemocentro.</p>
+<div class="grid">
+<div class="card"><h3>Idade</h3>Em geral, de 16 a 69 anos (menores de 18 com autorização).</div>
+<div class="card"><h3>Peso</h3>Mínimo de 50 kg.</div>
+<div class="card"><h3>Documento</h3>Documento oficial com foto.</div>
+<div class="card"><h3>Antes da doação</h3>Alimente-se bem, hidrate-se e evite alimentos gordurosos. Durma bem na noite anterior.</div>
+<div class="card"><h3>Depois da doação</h3>Descanse, beba bastante líquido e evite esforço físico intenso no dia.</div>
+<div class="card"><h3>Impedimentos temporários</h3>Gripe ou febre, tatuagem recente, vacinas e alguns medicamentos.</div>
+</div>
+<h2 style="margin-top:28px">Pré-avaliação informativa</h2>
+<div class="card" id="qz"></div>
+<div id="res" hidden></div>
+<h2 style="margin-top:28px">Dúvidas frequentes</h2>
+<details><summary>Quanto tempo leva a doação?</summary><p>A coleta dura cerca de 10 minutos; com triagem e lanche, em torno de 1 hora.</p></details>
+<details><summary>De quanto em quanto tempo posso doar?</summary><p>Homens, a cada 60 dias; mulheres, a cada 90 dias, em geral.</p></details>
+<details><summary>Dói?</summary><p>Apenas a picada da agulha, como em um exame de sangue.</p></details>
+</section>
+
+<section data-p="hemocentros" hidden>
+<h2>Localizador de hemocentros</h2>
+<p class="note">Dados fictícios, apenas para demonstração do protótipo.</p>
+<div class="bar"><input id="hq" type="search" placeholder="Busque por cidade, bairro ou CEP" aria-label="Buscar hemocentro"><button class="btn" id="hb">Buscar</button></div>
+<div class="grid" id="hl"></div>
+</section>
+
+<section data-p="campanhas" hidden>
+<h2>Campanhas de doação</h2>
+<div class="tabs" id="ct"><button data-s="ativa" aria-pressed="true">Ativas</button><button data-s="futura" aria-pressed="false">Futuras</button><button data-s="encerrada" aria-pressed="false">Encerradas</button></div>
+<div class="grid" id="cl"></div>
+</section>
+
+<section data-p="alertas" hidden>
+<h2>Alertas de necessidade de sangue</h2>
+<p class="note">Exemplos fictícios de alertas publicados por instituições parceiras.</p>
+<div class="bar"><select id="at" aria-label="Tipo sanguíneo"><option value="">Todos os tipos</option><option>O−</option><option>A+</option><option>B−</option><option>AB+</option></select>
+<select id="ac" aria-label="Cidade"><option value="">Todas as cidades</option><option>São Paulo</option><option>Campinas</option><option>Santos</option></select></div>
+<div class="grid" id="al"></div>
+</section>
+
+<section data-p="educacao" hidden>
+<h2>Educação e conscientização</h2>
+<h3>Mitos e verdades</h3>
+<details><summary>Doar sangue engorda ou emagrece?</summary><p><b>Mito.</b> A doação não altera o peso.</p></details>
+<details><summary>Quem tem tatuagem nunca mais pode doar?</summary><p><b>Mito.</b> Há um período de espera após fazer a tatuagem, depois é possível doar.</p></details>
+<details><summary>Doar sangue pode causar doenças?</summary><p><b>Mito.</b> O material usado é descartável e estéril.</p></details>
+<details><summary>O sangue doado pode ser separado em componentes?</summary><p><b>Verdade.</b> Hemácias, plaquetas e plasma podem ajudar pacientes diferentes.</p></details>
+<h3 style="margin-top:20px">Como funciona</h3>
+<div class="grid"><div class="card"><b>1. Cadastro</b><br>Documento e dados básicos.</div><div class="card"><b>2. Triagem</b><br>Exames rápidos e entrevista.</div><div class="card"><b>3. Coleta</b><br>Cerca de 10 minutos.</div><div class="card"><b>4. Lanche</b><br>Descanso e hidratação.</div></div>
+</section>
+
+</div></main>
+
+<footer><div class="wrap"><b>BloodLive</b> — Tecnologia que conecta vidas.<br>“Uma conexão pode salvar vidas. Seja parte dessa corrente.”<br>Projeto acadêmico · contato@bloodlive.example · Dados fictícios para demonstração.</div></footer>
+<div id="toast" role="status"></div>
+
+<script>
+var C=[
+{id:1,t:"Junho Vermelho",s:"ativa",d:"1 a 30/06",l:"Hemocentro Central, São Paulo",i:"Rede BloodLive",x:"Mutirão mensal para reforçar os estoques."},
+{id:2,t:"Doe Antes do Feriado",s:"ativa",d:"Todo mês",l:"Posto Santos Centro",i:"Hemocentro Litoral",x:"Coletas estendidas antes de feriados."},
+{id:3,t:"Universitário Solidário",s:"futura",d:"15/03",l:"Campus Campinas",i:"Hemocentro Campinas",x:"Coleta dentro da universidade."},
+{id:4,t:"Natal de Vidas",s:"encerrada",d:"Dez/2025",l:"Shopping Central, São Paulo",i:"Rede BloodLive",x:"Campanha de fim de ano já finalizada."}];
+var H=[
+{n:"Hemocentro Central",c:"São Paulo",b:"Sé",cep:"01001-000",e:"Rua Exemplo, 100",f:"(11) 5555-0100",h:"Seg a sáb, 7h às 17h"},
+{n:"Posto Pinheiros",c:"São Paulo",b:"Pinheiros",cep:"05422-000",e:"Av. Exemplo, 250",f:"(11) 5555-0200",h:"Seg a sex, 8h às 16h"},
+{n:"Hemocentro Campinas",c:"Campinas",b:"Centro",cep:"13010-000",e:"Rua Modelo, 45",f:"(19) 5555-0300",h:"Seg a sáb, 7h às 15h"},
+{n:"Posto Santos Centro",c:"Santos",b:"Centro",cep:"11010-000",e:"Av. Modelo, 800",f:"(13) 5555-0400",h:"Seg a sex, 8h às 17h"}];
+var A=[
+{t:"O−",c:"São Paulo",x:"Estoque baixo de O−. Procure o Hemocentro Central."},
+{t:"A+",c:"Campinas",x:"Campanha emergencial de A+ nesta semana."},
+{t:"B−",c:"Santos",x:"Convocação de doadores B− no Posto Santos Centro."},
+{t:"AB+",c:"São Paulo",x:"Reposição de plaquetas e AB+ no Posto Pinheiros."}];
+var $=function(s){return document.querySelector(s)};
+var fav=[];try{fav=JSON.parse(localStorage.getItem("bl_fav")||"[]")}catch(e){}
+function saveFav(){try{localStorage.setItem("bl_fav",JSON.stringify(fav))}catch(e){}}
+function toast(m){var t=$("#toast");t.textContent=m;t.style.display="block";setTimeout(function(){t.style.display="none"},2200)}
+function cc(c,full){var f=fav.indexOf(c.id)>-1;return '<article class="card"><span class="tag'+(c.s=="ativa"?"":" g")+'">'+c.s+'</span><h3 style="margin-top:8px">'+c.t+'</h3><p>'+c.x+'</p><p class="note">📅 '+c.d+' · 📍 '+c.l+'<br>🏥 '+c.i+'</p>'+(full?'<button class="btn o" data-f="'+c.id+'">'+(f?"★ Favoritada":"☆ Favoritar")+'</button> <button class="btn o" data-sh="'+c.id+'">Compartilhar</button>':'')+'</article>'}
+$("#homeCamp").innerHTML=C.filter(function(c){return c.s=="ativa"}).map(function(c){return cc(c,false)}).join("");
+var cs="ativa";
+function rc(){$("#cl").innerHTML=C.filter(function(c){return c.s==cs}).map(function(c){return cc(c,true)}).join("")||"<p>Nenhuma campanha.</p>"}
+$("#ct").onclick=function(e){var b=e.target.closest("button");if(!b)return;cs=b.dataset.s;[].forEach.call($("#ct").children,function(x){x.setAttribute("aria-pressed",x==b)});rc()};
+$("#cl").onclick=function(e){var b=e.target.closest("button");if(!b)return;if(b.dataset.f){var id=+b.dataset.f,i=fav.indexOf(id);i>-1?fav.splice(i,1):fav.push(id);saveFav();rc()}else if(b.dataset.sh){var c=C.filter(function(x){return x.id==b.dataset.sh})[0],tx=c.t+" — "+c.d+", "+c.l+". Doe sangue!";if(navigator.share){navigator.share({title:"BloodLive",text:tx}).catch(function(){})}else{try{navigator.clipboard.writeText(tx);toast("Texto copiado para compartilhar")}catch(e){toast(tx)}}}};
+function rh(){var q=$("#hq").value.toLowerCase().trim(),r=H.filter(function(h){return !q||(h.c+" "+h.b+" "+h.cep+" "+h.n).toLowerCase().indexOf(q)>-1});
+$("#hl").innerHTML=r.map(function(h){return '<article class="card"><h3>'+h.n+'</h3><p>'+h.e+' — '+h.b+', '+h.c+'<br>CEP '+h.cep+'</p><p class="note">📞 '+h.f+'<br>🕒 '+h.h+'</p><a class="btn o" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(h.e+", "+h.c)+'">Ver rota</a></article>'}).join("")||"<p>Nenhum hemocentro encontrado.</p>"}
+$("#hb").onclick=rh;$("#hq").oninput=rh;rh();
+function ra(){var t=$("#at").value,c=$("#ac").value;$("#al").innerHTML=A.filter(function(a){return(!t||a.t==t)&&(!c||a.c==c)}).map(function(a){return '<article class="card al"><span class="tag">'+a.t+'</span> <b>'+a.c+'</b><p>'+a.x+'</p></article>'}).join("")||"<p>Nenhum alerta para esse filtro.</p>"}
+$("#at").onchange=ra;$("#ac").onchange=ra;ra();
+var Q=["Tenho entre 16 e 69 anos.","Peso 50 kg ou mais.","Estou me sentindo bem hoje (sem febre ou gripe).","Dormi bem na última noite.","Não fiz tatuagem nem tomei vacina recentemente."];
+$("#qz").innerHTML=Q.map(function(q,i){return '<div class="q"><b>'+q+'</b><br><label><input type="radio" name="q'+i+'" value="1"> Sim</label><label><input type="radio" name="q'+i+'" value="0"> Não</label></div>'}).join("")+'<button class="btn" id="qb">Ver orientação</button>';
+$("#qb").onclick=function(){var s=0,n=0;Q.forEach(function(q,i){var r=document.querySelector('input[name="q'+i+'"]:checked');if(r){n++;s+=+r.value}});var el=$("#res");el.hidden=false;
+el.innerHTML=n<Q.length?"Responda todas as perguntas.":s==Q.length?"<b>Tudo certo por aqui!</b> Você parece atender aos critérios gerais. Procure um hemocentro para a avaliação definitiva.":"<b>Atenção:</b> algum critério pode impedir a doação agora. Procure um hemocentro para uma orientação.";el.innerHTML+='<p class="note">Orientação informativa. Não é diagnóstico nem confirma aptidão.</p>'};
+function go(){var p=(location.hash||"#inicio").slice(1);var ok=false;document.querySelectorAll("section[data-p]").forEach(function(s){var m=s.dataset.p==p;s.hidden=!m;if(m)ok=true});if(!ok){p="inicio";$('[data-p="inicio"]').hidden=false}
+document.querySelectorAll("nav a").forEach(function(a){a.removeAttribute("aria-current");if(a.getAttribute("href")=="#"+p)a.setAttribute("aria-current","page")});$("#nav").classList.remove("open");$("#mb").setAttribute("aria-expanded","false");window.scrollTo(0,0)}
+$("#mb").onclick=function(){var o=$("#nav").classList.toggle("open");this.setAttribute("aria-expanded",o)};
+window.addEventListener("hashchange",go);rc();go();
+</script>
+</body>
+</html>
