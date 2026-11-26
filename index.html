@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>BloodLive — Tecnologia que conecta vidas</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M32 6 C32 6 12 28 12 42 C12 53 21 60 32 60 C43 60 52 53 52 42 C52 28 32 6 32 6 Z' fill='%23B71C1C'/%3E%3Cg stroke='%23FFFFFF' stroke-width='2' stroke-opacity='0.85'%3E%3Cline x1='32' y1='14' x2='22' y2='29'/%3E%3Cline x1='32' y1='14' x2='42' y2='29'/%3E%3Cline x1='32' y1='14' x2='32' y2='33'/%3E%3Cline x1='22' y1='29' x2='42' y2='29'/%3E%3Cline x1='22' y1='29' x2='18' y2='43'/%3E%3Cline x1='22' y1='29' x2='32' y2='33'/%3E%3Cline x1='42' y1='29' x2='46' y2='43'/%3E%3Cline x1='42' y1='29' x2='32' y2='33'/%3E%3Cline x1='18' y1='43' x2='32' y2='33'/%3E%3Cline x1='46' y1='43' x2='32' y2='33'/%3E%3Cline x1='18' y1='43' x2='32' y2='53'/%3E%3Cline x1='46' y1='43' x2='32' y2='53'/%3E%3Cline x1='32' y1='33' x2='32' y2='53'/%3E%3Cline x1='18' y1='43' x2='46' y2='43'/%3E%3C/g%3E%3Cg fill='%23FFFFFF'%3E%3Ccircle cx='32' cy='14' r='3'/%3E%3Ccircle cx='22' cy='29' r='2.8'/%3E%3Ccircle cx='42' cy='29' r='2.8'/%3E%3Ccircle cx='32' cy='33' r='3'/%3E%3Ccircle cx='18' cy='43' r='2.8'/%3E%3Ccircle cx='46' cy='43' r='2.8'/%3E%3Ccircle cx='32' cy='53' r='3'/%3E%3C/g%3E%3C/svg%3E">
 <style>
 :root{--red:#B71C1C;--bg:#FFFFFF;--soft:#F5F5F5;--tx:#333333;--card:#FFFFFF;--bd:#E3E3E3;--acc:#B71C1C;--tint:#FDECEA;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1A1A1A;--soft:#242424;--tx:#EDEDED;--card:#2A2A2A;--bd:#444;--acc:#EF6C6C;--tint:#3A2222;color-scheme:dark}}
@@ -16,7 +17,28 @@ a{color:var(--acc)}
 .wrap{max-width:1040px;margin:0 auto;padding:0 20px}
 header{position:sticky;top:env(safe-area-inset-top,0px);background:var(--red);color:#fff;z-index:11}
 header .wrap{display:flex;align-items:center;justify-content:space-between;min-height:60px;gap:12px}
-.logo{font-weight:800;font-size:22px;color:#fff;text-decoration:none}
+.logo{display:inline-flex;align-items:center;gap:10px;font-weight:800;font-size:23px;letter-spacing:-.02em;color:#fff;text-decoration:none}
+.logo-light{font-weight:400;opacity:.95}
+.logo-mark{flex-shrink:0}
+.hero-flex{display:flex;align-items:center;gap:24px}
+.hero-emblem{flex-shrink:0;background:var(--card);border:1px solid var(--bd);border-radius:20px;padding:16px;box-shadow:0 4px 16px rgba(183,28,28,.08)}
+@media(max-width:640px){.hero-flex{flex-direction:column;align-items:flex-start}.hero-emblem{padding:12px}.hero-emblem svg{width:60px;height:60px}}
+.footer-brand{display:inline-flex;align-items:center;gap:8px;margin-bottom:4px}
+.urgent-strip{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;background:var(--tint);border:1px solid var(--red);border-left:6px solid var(--red);border-radius:12px;padding:14px 18px;margin-bottom:24px}
+.urgent-pills{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.pill-crit{background:var(--red);color:#fff;font-weight:700;font-size:13px;padding:3px 10px;border-radius:999px}
+.profile-grid{display:grid;gap:18px;grid-template-columns:1fr 1fr}
+@media(max-width:760px){.profile-grid{grid-template-columns:1fr}}
+.field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+.field label{font-weight:600;font-size:14px}
+.prog-wrap{background:var(--soft);border:1px solid var(--bd);border-radius:999px;height:14px;overflow:hidden;margin:10px 0}
+.prog-bar{height:100%;background:var(--red);transition:width .4s ease;border-radius:999px}
+.prog-bar.ok{background:#2E7D32}
+.compat-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.compat-badge{background:var(--soft);border:1px solid var(--bd);border-radius:8px;padding:4px 10px;font-weight:700;font-size:14px;color:var(--acc)}
+.stat-box{background:var(--soft);border-radius:10px;padding:14px;text-align:center}
+.stat-box b{display:block;font-size:24px;color:var(--acc)}
+.donor-mini{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:16px 18px;margin-bottom:24px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px}
 nav{display:flex;gap:4px;flex-wrap:wrap}
 nav a{color:#fff;text-decoration:none;padding:8px 12px;border-radius:8px;font-size:15px}
 nav a:hover,nav a[aria-current="page"]{background:rgba(255,255,255,.2)}
@@ -34,7 +56,7 @@ h3{margin:0 0 6px;font-size:18px}
 .btn:hover{background:#8E1515}
 .btn.o{background:transparent;color:var(--acc);border:2px solid var(--acc)}
 .btn.sm{padding:6px 14px;font-size:14px}
-.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(250px,1fr))}
 .card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:18px}
 .tag{display:inline-block;background:var(--red);color:#fff;border-radius:999px;padding:2px 12px;font-size:13px;font-weight:700}
 .tag.g{background:var(--soft);color:var(--tx);border:1px solid var(--bd)}
@@ -52,29 +74,133 @@ input,select{font:inherit;padding:10px 12px;border:1px solid var(--bd);border-ra
 .q{margin:14px 0}
 .q label{margin-right:14px}
 #res{margin-top:16px;padding:16px;border-radius:10px;background:var(--tint);border-left:6px solid var(--red)}
-.note{font-size:14px;opacity:.8}
+.note{font-size:14px;opacity:.85}
 .al{border-left:6px solid var(--red)}
 .status-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;background:var(--soft);border:1px solid var(--bd);border-radius:10px;padding:12px 16px;margin:12px 0 18px;font-size:14px}
 .pulse{display:inline-block;width:9px;height:9px;border-radius:50%;background:#2E7D32;margin-right:6px;vertical-align:middle}
 .pulse.warn{background:#E68A00}
+.map-box{background:var(--card);border:1px solid var(--bd);border-radius:12px;overflow:hidden;margin-bottom:20px}
+.map-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;padding:12px 16px;background:var(--soft);border-bottom:1px solid var(--bd);font-size:14px}
+.map-frame{width:100%;height:340px;border:0;display:block;background:var(--soft)}
+.card-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.card.active-pin{border:2px solid var(--red);background:var(--tint)}
 footer{background:var(--soft);padding:24px 0;font-size:14px;border-top:1px solid var(--bd)}
 #toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:#333;color:#fff;padding:10px 18px;border-radius:8px;display:none;z-index:20}
 </style>
 </head>
 <body>
 <header><div class="wrap">
-<a class="logo" href="#inicio">🩸 BloodLive</a>
+<a class="logo" href="#inicio" aria-label="BloodLive - Página Inicial">
+  <svg class="logo-mark" viewBox="0 0 64 64" width="32" height="32" aria-hidden="true">
+    <path d="M32 5 L19 23 L13 39 L20 52 L32 59 L44 52 L51 39 L45 23 Z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/>
+    <g stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <line x1="32" y1="5" x2="32" y2="25"/>
+      <line x1="19" y1="23" x2="32" y2="25"/>
+      <line x1="45" y1="23" x2="32" y2="25"/>
+      <line x1="19" y1="23" x2="25" y2="39"/>
+      <line x1="45" y1="23" x2="39" y2="39"/>
+      <line x1="32" y1="25" x2="25" y2="39"/>
+      <line x1="32" y1="25" x2="39" y2="39"/>
+      <line x1="13" y1="39" x2="25" y2="39"/>
+      <line x1="51" y1="39" x2="39" y2="39"/>
+      <line x1="25" y1="39" x2="39" y2="39"/>
+      <line x1="13" y1="39" x2="32" y2="48"/>
+      <line x1="51" y1="39" x2="32" y2="48"/>
+      <line x1="25" y1="39" x2="32" y2="48"/>
+      <line x1="39" y1="39" x2="32" y2="48"/>
+      <line x1="20" y1="52" x2="32" y2="48"/>
+      <line x1="44" y1="52" x2="32" y2="48"/>
+      <line x1="32" y1="48" x2="32" y2="59"/>
+    </g>
+    <g fill="currentColor">
+      <circle cx="32" cy="5" r="3.2"/>
+      <circle cx="19" cy="23" r="3"/>
+      <circle cx="45" cy="23" r="3"/>
+      <circle cx="32" cy="25" r="3.2"/>
+      <circle cx="13" cy="39" r="3"/>
+      <circle cx="25" cy="39" r="2.8"/>
+      <circle cx="39" cy="39" r="2.8"/>
+      <circle cx="51" cy="39" r="3"/>
+      <circle cx="20" cy="52" r="3"/>
+      <circle cx="32" cy="48" r="3"/>
+      <circle cx="44" cy="52" r="3"/>
+      <circle cx="32" cy="59" r="3.2"/>
+    </g>
+  </svg>
+  <span>Blood<span class="logo-light">Live</span></span>
+</a>
 <button id="mb" aria-label="Abrir menu" aria-expanded="false">Menu</button>
 <nav id="nav" aria-label="Principal">
-<a href="#inicio">Início</a><a href="#requisitos">Requisitos para doar</a><a href="#hemocentros">Hemocentros</a><a href="#campanhas">Campanhas</a><a href="#alertas">Alertas</a><a href="#educacao">Educação</a>
+<a href="#inicio">Início</a><a href="#requisitos">Requisitos para doar</a><a href="#hemocentros">Hemocentros</a><a href="#campanhas">Campanhas</a><a href="#alertas">Alertas</a><a href="#perfil">Meu Perfil</a><a href="#educacao">Educação</a>
 </nav></div></header>
 
 <main><div class="wrap">
 
 <section data-p="inicio">
-<div class="hero"><h1>Tecnologia que conecta vidas.</h1>
-<p class="lead">Informação confiável sobre doação de sangue, campanhas e hemocentros em um só lugar. Uma conexão pode salvar vidas.</p>
-<a class="btn" href="#requisitos">Quero ser um doador</a> <a class="btn o" href="#hemocentros">Encontrar hemocentros</a></div>
+<div class="hero">
+  <div class="hero-flex">
+    <div class="hero-emblem" aria-hidden="true">
+      <svg viewBox="0 0 64 64" width="84" height="84">
+        <path d="M32 5 L19 23 L13 39 L20 52 L32 59 L44 52 L51 39 L45 23 Z" fill="none" stroke="var(--acc)" stroke-width="2.4" stroke-linejoin="round"/>
+        <g stroke="var(--acc)" stroke-width="2" stroke-linecap="round">
+          <line x1="32" y1="5" x2="32" y2="25"/>
+          <line x1="19" y1="23" x2="32" y2="25"/>
+          <line x1="45" y1="23" x2="32" y2="25"/>
+          <line x1="19" y1="23" x2="25" y2="39"/>
+          <line x1="45" y1="23" x2="39" y2="39"/>
+          <line x1="32" y1="25" x2="25" y2="39"/>
+          <line x1="32" y1="25" x2="39" y2="39"/>
+          <line x1="13" y1="39" x2="25" y2="39"/>
+          <line x1="51" y1="39" x2="39" y2="39"/>
+          <line x1="25" y1="39" x2="39" y2="39"/>
+          <line x1="13" y1="39" x2="32" y2="48"/>
+          <line x1="51" y1="39" x2="32" y2="48"/>
+          <line x1="25" y1="39" x2="32" y2="48"/>
+          <line x1="39" y1="39" x2="32" y2="48"/>
+          <line x1="20" y1="52" x2="32" y2="48"/>
+          <line x1="44" y1="52" x2="32" y2="48"/>
+          <line x1="32" y1="48" x2="32" y2="59"/>
+        </g>
+        <g fill="var(--acc)">
+          <circle cx="32" cy="5" r="3.2"/>
+          <circle cx="19" cy="23" r="3"/>
+          <circle cx="45" cy="23" r="3"/>
+          <circle cx="32" cy="25" r="3.2"/>
+          <circle cx="13" cy="39" r="3"/>
+          <circle cx="25" cy="39" r="2.8"/>
+          <circle cx="39" cy="39" r="2.8"/>
+          <circle cx="51" cy="39" r="3"/>
+          <circle cx="20" cy="52" r="3"/>
+          <circle cx="32" cy="48" r="3"/>
+          <circle cx="44" cy="52" r="3"/>
+          <circle cx="32" cy="59" r="3.2"/>
+        </g>
+      </svg>
+    </div>
+    <div>
+      <h1>Tecnologia que conecta vidas.</h1>
+      <p class="lead">Informação confiável sobre doação de sangue, campanhas e hemocentros em um só lugar. Uma conexão pode salvar vidas.</p>
+      <a class="btn" href="#requisitos">Quero ser um doador</a> <a class="btn o" href="#hemocentros">Encontrar hemocentros</a>
+    </div>
+  </div>
+</div>
+<div id="homeUrgent" class="urgent-strip" hidden>
+  <div>
+    <strong>🚨 Estoque crítico hoje na Grande SP:</strong>
+    <span class="note" id="homeUrgentNote">Tipos com necessidade urgente de reposição</span>
+  </div>
+  <div class="urgent-pills" id="homeUrgentPills"></div>
+  <a class="btn sm" href="#alertas">Ver detalhes</a>
+</div>
+
+<div id="homeDonorWidget" class="donor-mini">
+  <div id="homeDonorText">
+    <strong>🩸 Personalize sua experiência de doador</strong><br>
+    <span class="note">Informe seu tipo sanguíneo e última doação para acompanhar seu prazo e alertas personalizados.</span>
+  </div>
+  <a class="btn o sm" href="#perfil" id="homeDonorBtn">Configurar Meu Perfil</a>
+</div>
+
 <h2>Campanhas em andamento</h2><div class="grid" id="homeCamp"></div>
 <h2 style="margin-top:28px">Tipos sanguíneos</h2>
 <div class="types"><div><b>O−</b>Doador universal</div><div><b>AB+</b>Receptor universal</div><div><b>A / B</b>Compatibilidade própria</div><div><b>O+</b>Mais comum</div></div>
@@ -102,9 +228,42 @@ footer{background:var(--soft);padding:24px 0;font-size:14px;border-top:1px solid
 </section>
 
 <section data-p="hemocentros" hidden>
-<h2>Localizador de hemocentros</h2>
-<p class="note">Endereços e telefones de fontes públicas (Fundação Pró-Sangue e hospitais). Os horários mudam: confirme antes de ir em <a href="https://www.prosangue.sp.gov.br" target="_blank" rel="noopener">prosangue.sp.gov.br</a> ou pelo Alô Pró-Sangue, (11) 4573-7800.</p>
-<div class="bar"><input id="hq" type="search" placeholder="Busque por cidade, bairro ou nome" aria-label="Buscar hemocentro"><button class="btn" id="hb">Buscar</button></div>
+<h2>Mapa e Localizador de Hemocentros — Grande São Paulo</h2>
+<p class="note">Rede ampliada com unidades na Capital, ABC Paulista, Osasco, Barueri e Guarulhos (Fundação Pró-Sangue, Colsan e bancos hospitalares). Confirme horários antes de comparecer.</p>
+
+<div class="bar">
+  <input id="hq" type="search" placeholder="Busque por cidade, bairro, rede ou unidade..." aria-label="Buscar hemocentro">
+  <select id="hc" aria-label="Filtrar por cidade">
+    <option value="">Todas as cidades (Grande SP)</option>
+    <option value="São Paulo">São Paulo (Capital)</option>
+    <option value="Santo André">Santo André</option>
+    <option value="São Bernardo do Campo">São Bernardo do Campo</option>
+    <option value="São Caetano do Sul">São Caetano do Sul</option>
+    <option value="Mauá">Mauá</option>
+    <option value="Osasco">Osasco</option>
+    <option value="Barueri">Barueri</option>
+    <option value="Guarulhos">Guarulhos</option>
+  </select>
+  <select id="hr" aria-label="Filtrar por região">
+    <option value="">Todas as regiões</option>
+    <option value="Centro / Oeste">Centro / Oeste</option>
+    <option value="Zona Sul">Zona Sul</option>
+    <option value="Zona Norte">Zona Norte</option>
+    <option value="Zona Leste">Zona Leste</option>
+    <option value="ABC Paulista">ABC Paulista</option>
+    <option value="Oeste Metropolitano">Oeste Metropolitano</option>
+    <option value="Norte Metropolitano">Norte Metropolitano</option>
+  </select>
+</div>
+
+<div class="map-box">
+  <div class="map-head">
+    <span>📍 <strong id="mapLabel">Visão geral: Postos de coleta na Grande São Paulo</strong></span>
+    <span class="note" id="hCount"></span>
+  </div>
+  <iframe id="mapFrame" class="map-frame" title="Mapa interativo dos hemocentros" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=posto%20de%20coleta%20de%20sangue%20Grande%20Sao%20Paulo&t=&z=11&ie=UTF8&iwloc=&output=embed"></iframe>
+</div>
+
 <div class="grid" id="hl"></div>
 </section>
 
@@ -131,6 +290,59 @@ footer{background:var(--soft);padding:24px 0;font-size:14px;border-top:1px solid
  <div class="card" style="margin-top:18px"><h3>Campanha: “Cada doação é um ponto. Falta o seu.”</h3><p>O fim de ano e o período de férias costumam reduzir o comparecimento de doadores. O tipo O negativo recebe atenção especial por ser usado em situações emergenciais.</p><p><a href="https://costanorte.com.br/brasil/uma-bolsa-de-sangue-salva-ate-quatro-vidas-dia-do-doador-alerta-para-necessidade-de-estoque-dos-hospitais.html" target="_blank" rel="noopener">Leia o alerta sobre a necessidade de doações</a> · <a href="https://santamarcelina.org/santa-marcelina-alerta-para-queda-nos-estoques-de-sangue-no-fim-do-ano-e-reforca-a-necessidade-de-120-doacoes-diarias/" target="_blank" rel="noopener">Alerta Santa Marcelina</a></p></div>
 </section>
 
+<section data-p="perfil" hidden>
+  <h2>Meu Perfil de Doador</h2>
+  <p class="note">Seus dados ficam salvos apenas no seu navegador (100% privado, sem necessidade de cadastro ou senha).</p>
+
+  <div class="profile-grid">
+    <div class="card">
+      <h3>Dados do Doador</h3>
+      <div class="field">
+        <label for="pNome">Nome ou apelido (opcional)</label>
+        <input id="pNome" type="text" placeholder="Ex.: Ana, Carlos...">
+      </div>
+      <div class="field">
+        <label for="pTipo">Meu tipo sanguíneo</label>
+        <select id="pTipo">
+          <option value="">Ainda não sei / Não informado</option>
+          <option value="O−">O− (Doador universal)</option>
+          <option value="O+">O+</option>
+          <option value="A−">A−</option>
+          <option value="A+">A+</option>
+          <option value="B−">B−</option>
+          <option value="B+">B+</option>
+          <option value="AB−">AB−</option>
+          <option value="AB+">AB+ (Receptor universal)</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="pSexo">Intervalo regulamentar (sexo biológico)</label>
+        <select id="pSexo">
+          <option value="F">Feminino (intervalo de 90 dias, até 3x/ano)</option>
+          <option value="M">Masculino (intervalo de 60 dias, até 4x/ano)</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="pUltima">Data da última doação</label>
+        <input id="pUltima" type="date">
+      </div>
+      <div class="field">
+        <label for="pTotal">Total de doações já realizadas (opcional)</label>
+        <input id="pTotal" type="number" min="0" max="200" placeholder="Ex.: 3">
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <button class="btn" type="button" id="btnSavePerfil">Salvar perfil</button>
+        <button class="btn o" type="button" id="btnClearPerfil">Limpar dados</button>
+      </div>
+    </div>
+
+    <div class="card" id="perfilStatusCard">
+      <h3>Status de Aptidão e Impacto</h3>
+      <div id="perfilResumo"></div>
+    </div>
+  </div>
+</section>
+
 <section data-p="educacao" hidden>
 <h2>Educação e conscientização</h2>
 <h3>Mitos e verdades</h3>
@@ -144,7 +356,21 @@ footer{background:var(--soft);padding:24px 0;font-size:14px;border-top:1px solid
 
 </div></main>
 
-<footer><div class="wrap"><b>BloodLive</b> — Tecnologia que conecta vidas.<br>“Uma conexão pode salvar vidas. Seja parte dessa corrente.”<br>Projeto acadêmico · contato@bloodlive.example · <span id="footerSync">Sincronização automática de estoques ativa.</span></div></footer>
+<footer><div class="wrap"><div class="footer-brand">
+  <svg viewBox="0 0 64 64" width="24" height="24" aria-hidden="true">
+    <path d="M32 5 L19 23 L13 39 L20 52 L32 59 L44 52 L51 39 L45 23 Z" fill="none" stroke="var(--acc)" stroke-width="2.6" stroke-linejoin="round"/>
+    <g stroke="var(--acc)" stroke-width="2.2">
+      <line x1="32" y1="5" x2="32" y2="25"/><line x1="19" y1="23" x2="45" y2="23"/>
+      <line x1="13" y1="39" x2="51" y2="39"/><line x1="20" y1="52" x2="44" y2="52"/>
+      <line x1="32" y1="25" x2="32" y2="59"/><line x1="19" y1="23" x2="44" y2="52"/><line x1="45" y1="23" x2="20" y2="52"/>
+    </g>
+    <g fill="var(--acc)">
+      <circle cx="32" cy="5" r="3.5"/><circle cx="19" cy="23" r="3.2"/><circle cx="45" cy="23" r="3.2"/>
+      <circle cx="13" cy="39" r="3.2"/><circle cx="51" cy="39" r="3.2"/><circle cx="32" cy="59" r="3.5"/>
+    </g>
+  </svg>
+  <b>Blood<span style="font-weight:400">Live</span></b> — Tecnologia que conecta vidas.
+</div><br>“Uma conexão pode salvar vidas. Seja parte dessa corrente.”<br>Projeto acadêmico · contato@bloodlive.example · <span id="footerSync">Sincronização automática de estoques ativa.</span></div></footer>
 <div id="toast" role="status"></div>
 
 <script>
@@ -154,41 +380,53 @@ var C=[
 {id:3,t:"Cada doação é um ponto. Falta o seu",s:"ativa",d:"Em andamento",l:"Posto Dante Pazzanese, Av. Dr. Dante Pazzanese, 500",i:"Secretaria de Estado da Saúde e Fundação Pró-Sangue",x:"Reposição urgente dos estoques, principalmente O−, O+, A−, B− e AB−. Posto Dante: seg a sex, 8h às 12h30.",u:"https://www.portal.prosangue.sp.gov.br/fps"},
 ];
 var PS="Confirme o horário no site da Pró-Sangue",T="(11) 4573-7800";
-var H=[
-{n:"Fundação Pró-Sangue · Posto Clínicas",c:"São Paulo",b:"Cerqueira César",e:"Av. Dr. Enéas de Carvalho Aguiar, 155, 1º andar",f:T,h:PS},
-{n:"Fundação Pró-Sangue · Posto Dante Pazzanese",c:"São Paulo",b:"Vila Mariana",e:"Av. Dr. Dante Pazzanese, 500",f:T,h:"Seg a sex, 8h às 12h30; sáb, 8h às 13h",d:"Acessível para mobilidade reduzida. Fechado em 24 e 25/12 e em 31/12 e 01/01. Agendamento no site da Pró-Sangue."},
-{n:"Fundação Pró-Sangue · Posto Mandaqui",c:"São Paulo",b:"Mandaqui",e:"R. Voluntários da Pátria, 4227",f:T,h:PS},
-{n:"Fundação Pró-Sangue · Posto Osasco",c:"Osasco",b:"Presidente Altino",e:"R. Ari Barroso, 355",f:T,h:PS},
-{n:"Banco de Sangue do HSPE",c:"São Paulo",b:"Vila Clementino",e:"Rua Pedro de Toledo, 1800",f:"",h:"Confirme o horário com o hospital"},
-{n:"Hospital Sírio-Libanês · Banco de Sangue",c:"São Paulo",b:"Bela Vista",cep:"01308-050",e:"Rua Dona Adma Jafet, 91, 3º subsolo",f:"(11) 3394-5260",h:"Confirme o horário com o hospital"},
-{n:"Hemocentro HSP Unifesp",c:"São Paulo",b:"Vila Clementino",e:"R. Dr. Diogo de Faria, 824",f:"(11) 5576-4848 / (11) 5576-4240",h:"Seg a sex, 8h às 17h30; sáb, 8h às 12h",d:"Coleta no 2º andar, com acessibilidade. Aos sábados há limite de 120 senhas. WhatsApp: (11) 91368-0530."},
-{n:"Banco de Sangue de São Paulo",c:"São Paulo",b:"Paraíso",e:"R. Dr. Tomás Carvalhal, 711",f:"(11) 97117-3886",h:"Todos os dias, 7h às 18h",d:"Sem agendamento prévio. Acessível para cadeirantes."},
-{n:"Pulsa São Paulo · Unidade Santo Amaro",c:"São Paulo",b:"Santo Amaro",e:"R. Iguatinga, 382",f:"(11) 5521-4013",h:"Seg a sex, 8h às 16h30; sáb, 8h às 16h",d:"Perto da estação Largo Treze (Linha 5-Lilás), com estacionamento conveniado. WhatsApp: (11) 98916-9528."},
-{n:"Hemocentro São Lucas · Unidade Mais Shopping",c:"São Paulo",b:"Santo Amaro",e:"R. Amador Bueno, 229, Piso 1",f:"",h:"Seg a sáb, 8h às 19h",d:"Perto da estação Largo 13 e do terminal Santo Amaro."}];
 
-/* =====================================================================
-   CONFIGURAÇÃO DE ATUALIZAÇÃO AUTOMÁTICA DOS ESTOQUES (BL-STOCK-SYNC)
-   =====================================================================
-   1. Como a página oficial da Fundação Pró-Sangue bloqueia leitura direta
-      do navegador por política de CORS, o módulo tenta buscar:
-      (a) Um endpoint JSON próprio/proxy configurado em STOCK_CONFIG.apiUrl
-      (b) Via proxy CORS público apontando para o painel oficial da Pró-Sangue
-      (c) Caso offline/indisponível, aplica o cache local mais recente ou o
-          snapshot de contingência e agenda nova tentativa automática.
-===================================================================== */
+var H=[
+// SÃO PAULO - CENTRO / OESTE
+{n:"Fundação Pró-Sangue · Posto Clínicas",c:"São Paulo",r:"Centro / Oeste",b:"Cerqueira César",e:"Av. Dr. Enéas de Carvalho Aguiar, 155, 1º andar",f:T,h:PS,d:"Próximo ao Metrô Clínicas (Linha 2-Verde)."},
+{n:"Hospital Sírio-Libanês · Banco de Sangue",c:"São Paulo",r:"Centro / Oeste",b:"Bela Vista",cep:"01308-050",e:"Rua Dona Adma Jafet, 91, 3º subsolo",f:"(11) 3394-5260",h:"Confirme o horário com o hospital"},
+{n:"Hospital do Servidor Público Municipal (HSPM) · Colsan",c:"São Paulo",r:"Centro / Oeste",b:"Aclimação",e:"R. Castro Alves, 60, 4º andar",f:"(11) 2111-0006",h:"Seg a sáb, 7h30 às 13h (exceto feriados)",d:"Próximo ao Metrô Vergueiro."},
+{n:"Banco de Sangue de São Paulo",c:"São Paulo",r:"Centro / Oeste",b:"Paraíso",e:"R. Dr. Tomás Carvalhal, 711",f:"(11) 97117-3886",h:"Todos os dias, 7h às 18h",d:"Sem agendamento prévio. Acessível para cadeirantes."},
+
+// SÃO PAULO - ZONA SUL
+{n:"Fundação Pró-Sangue · Posto Dante Pazzanese",c:"São Paulo",r:"Zona Sul",b:"Vila Mariana",e:"Av. Dr. Dante Pazzanese, 500",f:T,h:"Seg a sex, 8h às 12h30; sáb, 8h às 13h",d:"Acessível para mobilidade reduzida. Agendamento no site da Pró-Sangue."},
+{n:"Hemocentro HSP Unifesp",c:"São Paulo",r:"Zona Sul",b:"Vila Clementino",e:"R. Dr. Diogo de Faria, 824",f:"(11) 5576-4848 / (11) 5576-4240",h:"Seg a sex, 8h às 17h30; sáb, 8h às 12h",d:"Coleta no 2º andar, com acessibilidade. Sábados com limite de 120 senhas."},
+{n:"Banco de Sangue do HSPE",c:"São Paulo",r:"Zona Sul",b:"Vila Clementino",e:"Rua Pedro de Toledo, 1800",f:"",h:"Confirme o horário com o hospital"},
+{n:"Pulsa São Paulo · Unidade Santo Amaro",c:"São Paulo",r:"Zona Sul",b:"Santo Amaro",e:"R. Iguatinga, 382",f:"(11) 5521-4013",h:"Seg a sex, 8h às 16h30; sáb, 8h às 16h",d:"Perto da estação Largo Treze (Linha 5-Lilás), estacionamento conveniado."},
+{n:"Hemocentro São Lucas · Unidade Mais Shopping",c:"São Paulo",r:"Zona Sul",b:"Santo Amaro",e:"R. Amador Bueno, 229, Piso 1",f:"",h:"Seg a sáb, 8h às 19h",d:"Perto da estação Largo 13 e do terminal Santo Amaro."},
+{n:"Hospital Municipal Dr. Fernando Mauro P. da Rocha · Colsan",c:"São Paulo",r:"Zona Sul",b:"Campo Limpo",e:"Estrada de Itapecerica, 1661",f:"(11) 5812-1379",h:"Seg a sáb, 7h30 às 13h (exceto feriados)"},
+
+// SÃO PAULO - ZONA NORTE
+{n:"Fundação Pró-Sangue · Posto Mandaqui",c:"São Paulo",r:"Zona Norte",b:"Mandaqui",e:"R. Voluntários da Pátria, 4227",f:T,h:PS},
+
+// SÃO PAULO - ZONA LESTE
+{n:"Hospital Municipal Dr. Carmino Caricchio · Colsan",c:"São Paulo",r:"Zona Leste",b:"Tatuapé",e:"Av. Celso Garcia, 4815 (Entrada pela R. Síria, 25)",f:"(11) 5178-1614 / (11) 5178-1646",h:"Seg a sáb, 7h30 às 13h (exceto feriados)",d:"Estacionamento gratuito por 2h na Rua Síria, 126."},
+{n:"Hospital Municipal Alípio Corrêa Neto · Colsan",c:"São Paulo",r:"Zona Leste",b:"Ermelino Matarazzo",e:"Al. Rodrigo de Brum, 1989",f:"(11) 5178-2306 / (11) 5178-2087",h:"Seg a sáb, 7h30 às 13h (exceto feriados)"},
+{n:"Hospital Municipal Tide Setúbal · Colsan",c:"São Paulo",r:"Zona Leste",b:"São Miguel Paulista",e:"R. Dr. José Guilherme Eiras, 123",f:"(11) 2297-3076",h:"Seg a sáb, 7h30 às 13h (exceto feriados)"},
+
+// ABC PAULISTA
+{n:"Hospital Estadual Mário Covas · Colsan",c:"Santo André",r:"ABC Paulista",b:"Vila Sacadura Cabral",e:"Rua Dr. Henrique Calderazzo, 321",f:"(11) 2324-5780 / (11) 2324-5789",h:"Seg a sex, 7h30 às 14h30; sáb, 7h30 às 13h30",d:"Estacionamento gratuito no local."},
+{n:"Banco de Sangue de Santo André",c:"Santo André",r:"ABC Paulista",b:"Jardim",e:"Av. Dom Pedro II, 877",f:"(11) 4434-8200 / (11) 96910-2488",h:"Seg a sáb, 7h às 12h",d:"Próximo ao Parque Celso Daniel. Estacionamento gratuito no local."},
+{n:"Hemocentro Regional São Bernardo do Campo · Colsan",c:"São Bernardo do Campo",r:"ABC Paulista",b:"Jardim das Américas",e:"Rua Pedro Jacobucci, 440",f:"(11) 2111-0007 / (11) 2111-0008",h:"Seg a sex, 7h30 às 14h30; sáb, 7h30 às 13h30",d:"Estacionamento gratuito na Av. Redenção, 271."},
+{n:"Posto de Coleta São Caetano do Sul · Colsan",c:"São Caetano do Sul",r:"ABC Paulista",b:"Osvaldo Cruz",e:"Av. Vital Brasil Filho, 300",f:"(11) 2759-0888",h:"Seg a sáb, 7h30 às 13h (exceto feriados)"},
+{n:"Posto de Coleta Mauá · Colsan",c:"Mauá",r:"ABC Paulista",b:"Vila Bocaina",e:"Rua Luiz Lacava, 229",f:"(11) 2564-1200",h:"Seg a sáb, 7h30 às 13h (exceto feriados)",d:"Centro de Referência Saúde da Mulher, Criança e Adolescente."},
+
+// OESTE METROPOLITANO (OSASCO E BARUERI)
+{n:"Fundação Pró-Sangue · Posto Regional de Osasco",c:"Osasco",r:"Oeste Metropolitano",b:"Presidente Altino",e:"R. Ari Barroso, 355",f:T,h:PS},
+{n:"Fundação Pró-Sangue · Posto Barueri",c:"Barueri",r:"Oeste Metropolitano",b:"Centro",e:"Rua Guilhermina Carril Loureiro, 144",f:T,h:PS,d:"Unidade da Fundação Pró-Sangue na região Oeste."},
+
+// NORTE METROPOLITANO (GUARULHOS)
+{n:"Hemocentro São Lucas · Guarulhos",c:"Guarulhos",r:"Norte Metropolitano",b:"Centro",cep:"07110-110",e:"R. Santo Antônio, 95",f:"(11) 3660-6000",h:"Seg a sex, 8h às 16h15 (unidade até 18h)",d:"Estacionamento gratuito no local."}
+];
+
 var STOCK_CONFIG={
-  // Opcional: substitua pela URL da sua API/Cloudflare Worker/GitHub Action JSON
   apiUrl:"",
-  // URL oficial do painel de estoques da Fundação Pró-Sangue
   officialUrl:"https://prosangue.sp.gov.br/reqestoque/posicao_estoque.php",
-  // Proxy de leitura para contornar CORS quando rodando estaticamente no navegador
   corsProxy:"https://api.allorigins.win/get?url=",
-  // Intervalo de atualização automática em milissegundos (15 minutos)
   refreshIntervalMs:15*60*1000,
   cacheKey:"bloodlive_stock_cache_v1"
 };
 
-// Snapshot de contingência completo (todos os 8 tipos sanguíneos) caso sem internet
 var FALLBACK_STOCK=[
   {t:"O−",s:"Crítico",c:"São Paulo",x:"Estoque em nível crítico na Grande SP. Doador universal, prioridade máxima de reposição."},
   {t:"O+",s:"Alerta",c:"São Paulo",x:"Estoque em estado de alerta. Alta demanda hospitalar na capital e região."},
@@ -221,7 +459,6 @@ function buildDescription(tipo,status,cidade){
   return "Estoque em nível estável para "+tipo+" ("+cidade+"). Doações regulares ajudam a manter a reserva.";
 }
 
-// Interpreta o HTML oficial da Pró-Sangue caso venha via proxy
 function parseProSangueHTML(html){
   var parser=new DOMParser();
   var doc=parser.parseFromString(html,"text/html");
@@ -235,7 +472,7 @@ function parseProSangueHTML(html){
     for(var i=0;i<textBlocks.length;i++){
       var txt=(textBlocks[i].textContent||"").replace(/\s+/g," ").trim();
       if(txt.length>0 && txt.length<120){
-        var regex=new RegExp("(^|\b|\s)"+tpAscii.replace("+","\+").replace("-","\-")+"(\b|\s|$)","i");
+        var regex=new RegExp("(^|\\b|\\s)"+tpAscii.replace("+","\\+").replace("-","\\-")+"(\\b|\\s|$)","i");
         if(regex.test(txt)){
           if(/cr[ií]tico|emerg[eê]ncia|baixo/i.test(txt)){foundStatus="Crítico";break}
           if(/alerta|aten[cç][aã]o/i.test(txt)){foundStatus="Alerta";break}
@@ -286,7 +523,6 @@ async function syncStockData(manual){
   var freshItems=null;
   var sourceUsed="";
 
-  // 1. Tenta API JSON dedicada (se configurada)
   if(STOCK_CONFIG.apiUrl){
     try{
       var r1=await fetch(STOCK_CONFIG.apiUrl,{cache:"no-store"});
@@ -306,7 +542,6 @@ async function syncStockData(manual){
     }catch(e){}
   }
 
-  // 2. Tenta leitura direta do painel oficial via proxy CORS
   if(!freshItems){
     try{
       var proxyTarget=STOCK_CONFIG.corsProxy+encodeURIComponent(STOCK_CONFIG.officialUrl);
@@ -332,7 +567,6 @@ async function syncStockData(manual){
     updateSyncUI("Atualizado automaticamente em "+formatDateTime(now)+" ("+sourceUsed+")",false);
     if(manual)toast("Estoques atualizados com sucesso!");
   }else{
-    // 3. Fallback: usa cache salvo anteriormente ou dados de contingência
     var cached=loadStockCache();
     if(cached && cached.items && cached.items.length){
       A=cached.items;
@@ -349,6 +583,7 @@ async function syncStockData(manual){
   }
 
   ra();
+  if(typeof renderProfile==="function")renderProfile();
   if(btn){btn.disabled=false;btn.textContent="Atualizar agora"}
 }
 
@@ -362,9 +597,64 @@ var cs="ativa";
 function rc(){$("#cl").innerHTML=C.filter(function(c){return c.s==cs}).map(function(c){return cc(c,true)}).join("")||"<p>Nenhuma campanha.</p>"}
 $("#ct").onclick=function(e){var b=e.target.closest("button");if(!b)return;cs=b.dataset.s;[].forEach.call($("#ct").children,function(x){x.setAttribute("aria-pressed",x==b)});rc()};
 $("#cl").onclick=function(e){var b=e.target.closest("button");if(!b)return;if(b.dataset.f){var id=+b.dataset.f,i=fav.indexOf(id);i>-1?fav.splice(i,1):fav.push(id);saveFav();rc()}else if(b.dataset.sh){var c=C.filter(function(x){return x.id==b.dataset.sh})[0],tx=c.t+" — "+c.d+", "+c.l+". Doe sangue!";if(navigator.share){navigator.share({title:"BloodLive",text:tx}).catch(function(){})}else{try{navigator.clipboard.writeText(tx);toast("Texto copiado para compartilhar")}catch(e){toast(tx)}}}};
-function rh(){var q=$("#hq").value.toLowerCase().trim(),r=H.filter(function(h){return !q||(h.c+" "+h.b+" "+(h.cep||"")+" "+h.n).toLowerCase().indexOf(q)>-1});
-$("#hl").innerHTML=r.map(function(h){return '<article class="card"><h3>'+h.n+'</h3><p>'+h.e+' — '+h.b+', '+h.c+(h.cep?'<br>CEP '+h.cep:'')+'</p><p class="note">'+(h.f?'📞 '+h.f+'<br>':'')+'🕒 '+h.h+(h.d?'<br>ℹ️ '+h.d:'')+'</p><a class="btn o" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(h.e+", "+h.c)+'">Ver rota</a></article>'}).join("")||"<p>Nenhum hemocentro encontrado.</p>"}
-$("#hb").onclick=rh;$("#hq").oninput=rh;rh();
+
+var selectedPinIdx=-1;
+function focusMap(idx){
+  var h=H[idx];
+  if(!h)return;
+  selectedPinIdx=idx;
+  var q=encodeURIComponent(h.n+", "+h.e+", "+h.c+" - SP");
+  $("#mapFrame").src="https://maps.google.com/maps?q="+q+"&t=&z=15&ie=UTF8&iwloc=&output=embed";
+  $("#mapLabel").textContent=h.n+" ("+h.c+")";
+  rh();
+  $("#mapFrame").scrollIntoView({behavior:"smooth",block:"nearest"});
+}
+
+function rh(){
+  var q=$("#hq").value.toLowerCase().trim();
+  var city=$("#hc").value;
+  var reg=$("#hr").value;
+  var r=H.map(function(h,idx){return {item:h,idx:idx}}).filter(function(obj){
+    var h=obj.item;
+    var matchText=!q||(h.c+" "+h.b+" "+(h.cep||"")+" "+h.n+" "+h.r).toLowerCase().indexOf(q)>-1;
+    var matchCity=!city||h.c===city;
+    var matchReg=!reg||h.r===reg;
+    return matchText && matchCity && matchReg;
+  });
+
+  $("#hCount").textContent=r.length+(r.length===1?" unidade encontrada":" unidades encontradas");
+
+  if(selectedPinIdx===-1){
+    if(city){
+      $("#mapFrame").src="https://maps.google.com/maps?q="+encodeURIComponent("banco de sangue "+city+" SP")+"&t=&z=12&ie=UTF8&iwloc=&output=embed";
+      $("#mapLabel").textContent="Unidades em "+city;
+    }else if(reg){
+      $("#mapFrame").src="https://maps.google.com/maps?q="+encodeURIComponent("banco de sangue "+reg+" Sao Paulo")+"&t=&z=12&ie=UTF8&iwloc=&output=embed";
+      $("#mapLabel").textContent="Região: "+reg;
+    }
+  }
+
+  $("#hl").innerHTML=r.map(function(obj){
+    var h=obj.item;
+    var isSelected=obj.idx===selectedPinIdx;
+    return '<article class="card'+(isSelected?' active-pin':'')+'">'
+      +'<span class="tag g">'+h.r+'</span>'
+      +'<h3 style="margin-top:8px">'+h.n+'</h3>'
+      +'<p>'+h.e+' — '+h.b+', <b>'+h.c+'</b>'+(h.cep?'<br>CEP '+h.cep:'')+'</p>'
+      +'<p class="note">'+(h.f?'📞 '+h.f+'<br>':'')+'🕒 '+h.h+(h.d?'<br>ℹ️ '+h.d:'')+'</p>'
+      +'<div class="card-actions">'
+      +'<button class="btn sm" type="button" data-pin="'+obj.idx+'">📍 Ver no mapa</button>'
+      +'<a class="btn o sm" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(h.e+", "+h.c+" - SP")+'">Abrir rota</a>'
+      +'</div>'
+      +'</article>';
+  }).join("")||"<p>Nenhum hemocentro encontrado para esse filtro.</p>";
+}
+
+$("#hq").oninput=function(){selectedPinIdx=-1;rh()};
+$("#hc").onchange=function(){selectedPinIdx=-1;if(!this.value&&!$("#hr").value){$("#mapFrame").src="https://maps.google.com/maps?q=posto%20de%20coleta%20de%20sangue%20Grande%20Sao%20Paulo&t=&z=11&ie=UTF8&iwloc=&output=embed";$("#mapLabel").textContent="Visão geral: Postos de coleta na Grande São Paulo"}rh()};
+$("#hr").onchange=function(){selectedPinIdx=-1;if(!this.value&&!$("#hc").value){$("#mapFrame").src="https://maps.google.com/maps?q=posto%20de%20coleta%20de%20sangue%20Grande%20Sao%20Paulo&t=&z=11&ie=UTF8&iwloc=&output=embed";$("#mapLabel").textContent="Visão geral: Postos de coleta na Grande São Paulo"}rh()};
+$("#hl").onclick=function(e){var b=e.target.closest("button[data-pin]");if(b)focusMap(+b.dataset.pin)};
+rh();
 
 function ra(){
   var t=$("#at").value,c=$("#ac").value,st=$("#as").value;
@@ -387,7 +677,6 @@ function ra(){
 $("#at").onchange=ra;$("#ac").onchange=ra;$("#as").onchange=ra;
 $("#btnSync").onclick=function(){syncStockData(true)};
 
-// Inicia sincronização automática ao abrir e agenda a cada 15 minutos
 syncStockData(false);
 setInterval(function(){syncStockData(false)},STOCK_CONFIG.refreshIntervalMs);
 
@@ -398,6 +687,252 @@ el.innerHTML=n<Q.length?"Responda todas as perguntas.":s==Q.length?"<b>Tudo cert
 function go(){var p=(location.hash||"#inicio").slice(1);var ok=false;document.querySelectorAll("section[data-p]").forEach(function(s){var m=s.dataset.p==p;s.hidden=!m;if(m)ok=true});if(!ok){p="inicio";$('[data-p="inicio"]').hidden=false}
 document.querySelectorAll("nav a").forEach(function(a){a.removeAttribute("aria-current");if(a.getAttribute("href")=="#"+p)a.setAttribute("aria-current","page")});$("#nav").classList.remove("open");$("#mb").setAttribute("aria-expanded","false");window.scrollTo(0,0)}
 $("#mb").onclick=function(){var o=$("#nav").classList.toggle("open");this.setAttribute("aria-expanded",o)};
+
+/* =====================================================================
+   MEU PERFIL DE DOADOR (LOCALSTORAGE + COMPATIBILIDADE + CALENDÁRIO ICS)
+   ===================================================================== */
+var PROFILE_KEY="bloodlive_donor_profile_v1";
+var COMPAT={
+  "O−":{doa:["O−","O+","A−","A+","B−","B+","AB−","AB+"],recebe:["O−"]},
+  "O+":{doa:["O+","A+","B+","AB+"],recebe:["O−","O+"]},
+  "A−":{doa:["A−","A+","AB−","AB+"],recebe:["O−","A−"]},
+  "A+":{doa:["A+","AB+"],recebe:["O−","O+","A−","A+"]},
+  "B−":{doa:["B−","B+","AB−","AB+"],recebe:["O−","B−"]},
+  "B+":{doa:["B+","AB+"],recebe:["O−","O+","B−","B+"]},
+  "AB−":{doa:["AB−","AB+"],recebe:["O−","A−","B−","AB−"]},
+  "AB+":{doa:["AB+"],recebe:["O−","O+","A−","A+","B−","B+","AB−","AB+"]}
+};
+
+function loadProfile(){
+  try{
+    var raw=localStorage.getItem(PROFILE_KEY);
+    return raw?JSON.parse(raw):null;
+  }catch(e){return null}
+}
+
+function saveProfileData(p){
+  try{localStorage.setItem(PROFILE_KEY,JSON.stringify(p))}catch(e){}
+}
+
+function parseLocalDate(isoStr){
+  if(!isoStr)return null;
+  var parts=isoStr.split("-");
+  if(parts.length!==3)return null;
+  return new Date(+parts[0],+parts[1]-1,+parts[2],12,0,0);
+}
+
+function formatBRDate(d){
+  var pad=function(n){return n<10?"0"+n:n};
+  return pad(d.getDate())+"/"+pad(d.getMonth()+1)+"/"+d.getFullYear();
+}
+
+function downloadNextDonationICS(nextDate,tipo){
+  var pad=function(n){return n<10?"0"+n:n};
+  var y=nextDate.getFullYear(),m=pad(nextDate.getMonth()+1),d=pad(nextDate.getDate());
+  var dtStart=y+m+d+"T090000";
+  var dtEnd=y+m+d+"T100000";
+  var summary="BloodLive: Já posso doar sangue novamente!"+(tipo?" ("+tipo+")":"");
+  var desc="Seu intervalo regulamentar de doação foi concluído. Consulte os estoques e hemocentros próximos no BloodLive.";
+  var ics=[
+    "BEGIN:VCALENDAR",
+    "VERSION:2.0",
+    "PRODID:-//BloodLive//Agenda Doador//PT-BR",
+    "BEGIN:VEVENT",
+    "UID:bloodlive-"+Date.now()+"@bloodlive.org",
+    "DTSTAMP:"+y+m+d+"T120000Z",
+    "DTSTART:"+dtStart,
+    "DTEND:"+dtEnd,
+    "SUMMARY:"+summary,
+    "DESCRIPTION:"+desc,
+    "END:VEVENT",
+    "END:VCALENDAR"
+  ].join("\r\n");
+
+  var blob=new Blob([ics],{type:"text/calendar;charset=utf-8"});
+  var url=URL.createObjectURL(blob);
+  var a=document.createElement("a");
+  a.href=url;
+  a.download="lembrete-doacao-bloodlive.ics";
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  setTimeout(function(){URL.revokeObjectURL(url)},1000);
+  toast("Lembrete de calendário (.ics) baixado!");
+}
+
+function renderProfile(){
+  var p=loadProfile();
+  if(p){
+    $("#pNome").value=p.nome||"";
+    $("#pTipo").value=p.tipo||"";
+    $("#pSexo").value=p.sexo||"F";
+    $("#pUltima").value=p.ultima||"";
+    $("#pTotal").value=p.total||"";
+  }
+
+  var box=$("#perfilResumo");
+  if(!p || (!p.tipo && !p.ultima && !p.nome && !p.total)){
+    box.innerHTML='<p>Você ainda não preencheu seus dados.</p>'
+      +'<p class="note">Preencha ao lado para calcular automaticamente quando você estará apto(a) para doar novamente, ver sua compatibilidade sanguínea e receber alertas prioritários do seu tipo.</p>';
+    updateHomeWidgets(null);
+    return;
+  }
+
+  var htmlOut="";
+  var greeting=p.nome?"Olá, <b>"+p.nome+"</b>! ":"";
+  var intervalDays=(p.sexo==="M")?60:90;
+
+  // Cálculo de próxima doação
+  if(p.ultima){
+    var lastD=parseLocalDate(p.ultima);
+    if(lastD){
+      var nextD=new Date(lastD.getTime());
+      nextD.setDate(nextD.getDate()+intervalDays);
+      var today=new Date();
+      today.setHours(12,0,0,0);
+
+      var diffMs=nextD.getTime()-today.getTime();
+      var daysLeft=Math.ceil(diffMs/(1000*60*60*24));
+      var elapsed=Math.max(0,intervalDays-Math.max(0,daysLeft));
+      var pct=Math.min(100,Math.round((elapsed/intervalDays)*100));
+
+      if(daysLeft<=0){
+        htmlOut+='<div style="background:var(--tint);border-left:5px solid #2E7D32;padding:12px 14px;border-radius:8px;margin-bottom:14px">'
+          +'<span class="tag" style="background:#2E7D32">Apto(a) para doar!</span>'
+          +'<p style="margin:8px 0 4px">'+greeting+'Seu intervalo de <b>'+intervalDays+' dias</b> (desde '+formatBRDate(lastD)+') já foi concluído.</p>'
+          +'<a class="btn sm" href="#hemocentros">Encontrar hemocentro agora</a>'
+          +'</div>';
+      }else{
+        htmlOut+='<div style="background:var(--soft);padding:12px 14px;border-radius:8px;margin-bottom:14px">'
+          +'<span class="tag" style="background:#E68A00">Em intervalo regulamentar</span>'
+          +'<p style="margin:8px 0 4px">'+greeting+'Faltam <b>'+daysLeft+(daysLeft===1?' dia':' dias')+'</b> para sua próxima doação.</p>'
+          +'<p class="note" style="margin:0">Próxima data liberada: <b>'+formatBRDate(nextD)+'</b> (intervalo de '+intervalDays+' dias)</p>'
+          +'<div class="prog-wrap"><div class="prog-bar" style="width:'+pct+'%"></div></div>'
+          +'<button class="btn o sm" type="button" id="btnIcs">📅 Adicionar lembrete ao calendário</button>'
+          +'</div>';
+      }
+    }
+  }else if(greeting){
+    htmlOut+='<p>'+greeting+'Informe a data da sua última doação para acompanhar a contagem regressiva.</p>';
+  }
+
+  // Status do estoque do tipo do usuário
+  if(p.tipo && COMPAT[p.tipo]){
+    var stockMatch=A.filter(function(item){return item.t===p.tipo})[0];
+    if(stockMatch){
+      var stColor=stockMatch.s==="Crítico"?"#B71C1C":stockMatch.s==="Alerta"?"#E68A00":"#2E7D32";
+      htmlOut+='<div style="margin-bottom:14px">'
+        +'<div style="font-size:14px;font-weight:600">Situação atual do seu tipo (<b>'+p.tipo+'</b>) na Grande SP:</div>'
+        +'<div style="margin-top:6px"><span class="tag" style="background:'+stColor+'">Estoque '+stockMatch.s+'</span> <span class="note">'+stockMatch.x+'</span></div>'
+        +'</div>';
+    }
+
+    htmlOut+='<div style="margin-bottom:14px">'
+      +'<div style="font-size:14px;font-weight:600">Quem você ajuda ao doar (<b>'+p.tipo+'</b>):</div>'
+      +'<div class="compat-row">'+COMPAT[p.tipo].doa.map(function(tp){return '<span class="compat-badge">'+tp+'</span>'}).join("")+'</div>'
+      +'<div style="font-size:14px;font-weight:600;margin-top:10px">De quem você pode receber:</div>'
+      +'<div class="compat-row">'+COMPAT[p.tipo].recebe.map(function(tp){return '<span class="compat-badge" style="color:var(--tx)">'+tp+'</span>'}).join("")+'</div>'
+      +'</div>';
+  }
+
+  // Impacto acumulado
+  var tot=parseInt(p.total,10);
+  if(!isNaN(tot) && tot>0){
+    htmlOut+='<div class="stat-box">'
+      +'<b>Até '+(tot*4)+' vidas impactadas</b>'
+      +'<span class="note">Com '+tot+(tot===1?' doação registrada':' doações registradas')+' (cada bolsa pode salvar até 4 pessoas).</span>'
+      +'</div>';
+  }
+
+  box.innerHTML=htmlOut;
+
+  var btnIcs=$("#btnIcs");
+  if(btnIcs && p.ultima){
+    btnIcs.onclick=function(){
+      var d=parseLocalDate(p.ultima);
+      d.setDate(d.getDate()+intervalDays);
+      downloadNextDonationICS(d,p.tipo);
+    };
+  }
+
+  updateHomeWidgets(p);
+}
+
+function updateHomeWidgets(p){
+  // 1. Atualiza banner de estoques críticos na Home
+  var criticos=A.filter(function(item){return item.s==="Crítico"});
+  var uBox=$("#homeUrgent");
+  if(uBox){
+    if(criticos.length){
+      uBox.hidden=false;
+      $("#homeUrgentPills").innerHTML=criticos.map(function(c){return '<span class="pill-crit">'+c.t+'</span>'}).join("");
+    }else{
+      uBox.hidden=true;
+    }
+  }
+
+  // 2. Atualiza widget rápido do doador na Home
+  var dText=$("#homeDonorText");
+  var dBtn=$("#homeDonorBtn");
+  if(!dText)return;
+
+  if(!p || (!p.tipo && !p.ultima)){
+    dText.innerHTML='<strong>🩸 Personalize sua experiência de doador</strong><br><span class="note">Informe seu tipo sanguíneo e última doação para acompanhar seu prazo e alertas personalizados.</span>';
+    dBtn.textContent="Configurar Meu Perfil";
+    return;
+  }
+
+  var intervalDays=(p.sexo==="M")?60:90;
+  var statusSnippet="";
+  if(p.ultima){
+    var lastD=parseLocalDate(p.ultima);
+    var nextD=new Date(lastD.getTime());
+    nextD.setDate(nextD.getDate()+intervalDays);
+    var today=new Date();today.setHours(12,0,0,0);
+    var daysLeft=Math.ceil((nextD.getTime()-today.getTime())/(1000*60*60*24));
+    statusSnippet=daysLeft<=0?"✅ <b>Você já está apto(a) para doar!</b>":"⏳ Faltam <b>"+daysLeft+" dias</b> para sua próxima doação ("+formatBRDate(nextD)+").";
+  }else{
+    statusSnippet="Informe a data da sua última doação para ver a contagem regressiva.";
+  }
+
+  var tipoBadge=p.tipo?' <span class="tag" style="margin-left:6px">Tipo '+p.tipo+'</span>':"";
+  var critAlert="";
+  if(p.tipo){
+    var st=A.filter(function(x){return x.t===p.tipo})[0];
+    if(st && st.s==="Crítico"){
+      critAlert='<br><span style="color:var(--acc);font-weight:600">🚨 Atenção: seu tipo sanguíneo ('+p.tipo+') está com estoque crítico hoje!</span>';
+    }
+  }
+
+  dText.innerHTML='<strong>Olá'+(p.nome?", "+p.nome:"")+'!</strong>'+tipoBadge+'<br><span class="note">'+statusSnippet+'</span>'+critAlert;
+  dBtn.textContent="Ver Meu Perfil";
+}
+
+$("#btnSavePerfil").onclick=function(){
+  var data={
+    nome:$("#pNome").value.trim(),
+    tipo:$("#pTipo").value,
+    sexo:$("#pSexo").value,
+    ultima:$("#pUltima").value,
+    total:$("#pTotal").value
+  };
+  saveProfileData(data);
+  renderProfile();
+  toast("Perfil de doador salvo no seu navegador!");
+};
+
+$("#btnClearPerfil").onclick=function(){
+  try{localStorage.removeItem(PROFILE_KEY)}catch(e){}
+  $("#pNome").value="";
+  $("#pTipo").value="";
+  $("#pSexo").value="F";
+  $("#pUltima").value="";
+  $("#pTotal").value="";
+  renderProfile();
+  toast("Dados do perfil removidos.");
+};
+
+renderProfile();
 window.addEventListener("hashchange",go);rc();go();
 </script>
 </body>
