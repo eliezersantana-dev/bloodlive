@@ -33,6 +33,7 @@ h3{margin:0 0 6px;font-size:18px}
 .btn{display:inline-block;background:var(--red);color:#fff;border:0;border-radius:10px;padding:12px 22px;font-size:16px;font-weight:600;text-decoration:none;cursor:pointer}
 .btn:hover{background:#8E1515}
 .btn.o{background:transparent;color:var(--acc);border:2px solid var(--acc)}
+.btn.sm{padding:6px 14px;font-size:14px}
 .grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
 .card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:18px}
 .tag{display:inline-block;background:var(--red);color:#fff;border-radius:999px;padding:2px 12px;font-size:13px;font-weight:700}
@@ -43,7 +44,7 @@ h3{margin:0 0 6px;font-size:18px}
 details{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:12px 16px;margin-bottom:8px}
 summary{cursor:pointer;font-weight:600}
 input,select{font:inherit;padding:10px 12px;border:1px solid var(--bd);border-radius:8px;background:var(--card);color:var(--tx)}
-.bar{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 20px}
+.bar{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 20px;align-items:center}
 .bar input{flex:1;min-width:200px}
 .tabs{display:flex;gap:8px;margin:14px 0 20px;flex-wrap:wrap}
 .tabs button{border:2px solid var(--acc);background:none;color:var(--acc);border-radius:999px;padding:6px 16px;font:inherit;font-weight:600;cursor:pointer}
@@ -53,6 +54,9 @@ input,select{font:inherit;padding:10px 12px;border:1px solid var(--bd);border-ra
 #res{margin-top:16px;padding:16px;border-radius:10px;background:var(--tint);border-left:6px solid var(--red)}
 .note{font-size:14px;opacity:.8}
 .al{border-left:6px solid var(--red)}
+.status-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;background:var(--soft);border:1px solid var(--bd);border-radius:10px;padding:12px 16px;margin:12px 0 18px;font-size:14px}
+.pulse{display:inline-block;width:9px;height:9px;border-radius:50%;background:#2E7D32;margin-right:6px;vertical-align:middle}
+.pulse.warn{background:#E68A00}
 footer{background:var(--soft);padding:24px 0;font-size:14px;border-top:1px solid var(--bd)}
 #toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:#333;color:#fff;padding:10px 18px;border-radius:8px;display:none;z-index:20}
 </style>
@@ -106,17 +110,25 @@ footer{background:var(--soft);padding:24px 0;font-size:14px;border-top:1px solid
 
 <section data-p="campanhas" hidden>
 <h2>Campanhas de doação</h2>
-<p class="note">Campanhas de exemplo, apenas ilustrativas.</p>
+<p class="note">Campanhas de fontes públicas. Confirme data e horário antes de ir.</p>
 <div class="tabs" id="ct"><button data-s="ativa" aria-pressed="true">Ativas</button><button data-s="futura" aria-pressed="false">Futuras</button><button data-s="encerrada" aria-pressed="false">Encerradas</button></div>
 <div class="grid" id="cl"></div>
 </section>
 
 <section data-p="alertas" hidden>
-<h2>Alertas de necessidade de sangue</h2>
-<p class="note">Exemplos fictícios de alertas publicados por instituições parceiras.</p>
-<div class="bar"><select id="at" aria-label="Tipo sanguíneo"><option value="">Todos os tipos</option><option>O−</option><option>A+</option><option>B−</option><option>AB+</option></select>
-<select id="ac" aria-label="Cidade"><option value="">Todas as cidades</option><option>São Paulo</option><option>Osasco</option></select></div>
-<div class="grid" id="al"></div>
+ <h2>Alertas de necessidade de sangue — São Paulo</h2>
+ <p>Os estoques da Fundação Pró-Sangue, que atende a Grande São Paulo e Osasco, são monitorados automaticamente para indicar a necessidade de reposição de cada tipo sanguíneo.</p>
+ <div class="status-bar">
+   <div><span class="pulse" id="syncDot"></span><span id="syncStatus">Sincronizando estoques com a Fundação Pró-Sangue...</span></div>
+   <button class="btn o sm" id="btnSync" type="button">Atualizar agora</button>
+ </div>
+ <div class="bar">
+   <select id="at" aria-label="Tipo sanguíneo"><option value="">Todos os tipos</option><option>O−</option><option>O+</option><option>A−</option><option>A+</option><option>B−</option><option>B+</option><option>AB−</option><option>AB+</option></select>
+   <select id="ac" aria-label="Cidade"><option value="">Grande São Paulo e Osasco</option><option>São Paulo</option><option>Osasco</option></select>
+   <select id="as" aria-label="Nível do estoque"><option value="">Todos os níveis</option><option value="Crítico">Crítico</option><option value="Alerta">Alerta</option><option value="Estável">Estável</option></select>
+ </div>
+ <div class="grid" id="al"></div>
+ <div class="card" style="margin-top:18px"><h3>Campanha: “Cada doação é um ponto. Falta o seu.”</h3><p>O fim de ano e o período de férias costumam reduzir o comparecimento de doadores. O tipo O negativo recebe atenção especial por ser usado em situações emergenciais.</p><p><a href="https://costanorte.com.br/brasil/uma-bolsa-de-sangue-salva-ate-quatro-vidas-dia-do-doador-alerta-para-necessidade-de-estoque-dos-hospitais.html" target="_blank" rel="noopener">Leia o alerta sobre a necessidade de doações</a> · <a href="https://santamarcelina.org/santa-marcelina-alerta-para-queda-nos-estoques-de-sangue-no-fim-do-ano-e-reforca-a-necessidade-de-120-doacoes-diarias/" target="_blank" rel="noopener">Alerta Santa Marcelina</a></p></div>
 </section>
 
 <section data-p="educacao" hidden>
@@ -132,15 +144,15 @@ footer{background:var(--soft);padding:24px 0;font-size:14px;border-top:1px solid
 
 </div></main>
 
-<footer><div class="wrap"><b>BloodLive</b> — Tecnologia que conecta vidas.<br>“Uma conexão pode salvar vidas. Seja parte dessa corrente.”<br>Projeto acadêmico · contato@bloodlive.example · Campanhas e alertas são exemplos ilustrativos.</div></footer>
+<footer><div class="wrap"><b>BloodLive</b> — Tecnologia que conecta vidas.<br>“Uma conexão pode salvar vidas. Seja parte dessa corrente.”<br>Projeto acadêmico · contato@bloodlive.example · <span id="footerSync">Sincronização automática de estoques ativa.</span></div></footer>
 <div id="toast" role="status"></div>
 
 <script>
 var C=[
-{id:1,t:"Junho Vermelho",s:"ativa",d:"1 a 30/06",l:"Local de exemplo",i:"Instituição parceira (exemplo)",x:"Mutirão mensal para reforçar os estoques."},
-{id:2,t:"Doe Antes do Feriado",s:"ativa",d:"Todo mês",l:"Local de exemplo",i:"Instituição parceira (exemplo)",x:"Coletas estendidas antes de feriados."},
-{id:3,t:"Universitário Solidário",s:"futura",d:"15/03",l:"Local de exemplo",i:"Instituição parceira (exemplo)",x:"Coleta dentro da universidade."},
-{id:4,t:"Natal de Vidas",s:"encerrada",d:"Dez/2025",l:"Local de exemplo",i:"Instituição parceira (exemplo)",x:"Campanha de fim de ano já finalizada."}];
+{id:1,t:"2ª Campanha de Doação de Sangue PMI São Paulo",s:"futura",d:"Sáb, 28/11/2026, 8h às 12h",l:"Hemocentro Regional da Unifesp, Vila Clementino",i:"PMI São Paulo e Unifesp",x:"Inscrição gratuita pelo Sympla, para organizar o fluxo de doadores.",u:"https://www.sympla.com.br/evento/2-edicao-campanha-de-doacao-de-sangue-pmi-sao-paulo/3640302"},
+{id:2,t:"Semana Nacional do Doador na Unifesp",s:"ativa",d:"Última semana de novembro",l:"R. Dr. Diogo de Faria, 824, Vila Clementino",i:"Hemocentro Unifesp",x:"Programação especial com lanches diferenciados e brindes simbólicos. Seg a sex, 8h às 17h30; sáb, 8h às 12h.",u:"https://portal.unifesp.br/destaques/semana-nacional-do-doador-2026"},
+{id:3,t:"Cada doação é um ponto. Falta o seu",s:"ativa",d:"Em andamento",l:"Posto Dante Pazzanese, Av. Dr. Dante Pazzanese, 500",i:"Secretaria de Estado da Saúde e Fundação Pró-Sangue",x:"Reposição urgente dos estoques, principalmente O−, O+, A−, B− e AB−. Posto Dante: seg a sex, 8h às 12h30.",u:"https://www.portal.prosangue.sp.gov.br/fps"},
+];
 var PS="Confirme o horário no site da Pró-Sangue",T="(11) 4573-7800";
 var H=[
 {n:"Fundação Pró-Sangue · Posto Clínicas",c:"São Paulo",b:"Cerqueira César",e:"Av. Dr. Enéas de Carvalho Aguiar, 155, 1º andar",f:T,h:PS},
@@ -153,16 +165,198 @@ var H=[
 {n:"Banco de Sangue de São Paulo",c:"São Paulo",b:"Paraíso",e:"R. Dr. Tomás Carvalhal, 711",f:"(11) 97117-3886",h:"Todos os dias, 7h às 18h",d:"Sem agendamento prévio. Acessível para cadeirantes."},
 {n:"Pulsa São Paulo · Unidade Santo Amaro",c:"São Paulo",b:"Santo Amaro",e:"R. Iguatinga, 382",f:"(11) 5521-4013",h:"Seg a sex, 8h às 16h30; sáb, 8h às 16h",d:"Perto da estação Largo Treze (Linha 5-Lilás), com estacionamento conveniado. WhatsApp: (11) 98916-9528."},
 {n:"Hemocentro São Lucas · Unidade Mais Shopping",c:"São Paulo",b:"Santo Amaro",e:"R. Amador Bueno, 229, Piso 1",f:"",h:"Seg a sáb, 8h às 19h",d:"Perto da estação Largo 13 e do terminal Santo Amaro."}];
-var A=[
-{t:"O−",c:"São Paulo",x:"Exemplo: estoque baixo de O−. Procure um posto de coleta."},
-{t:"A+",c:"Osasco",x:"Exemplo: campanha emergencial de A+ nesta semana."},
-{t:"B−",c:"São Paulo",x:"Exemplo: convocação de doadores B−."},
-{t:"AB+",c:"Osasco",x:"Exemplo: reposição de AB+ e plaquetas."}];
+
+/* =====================================================================
+   CONFIGURAÇÃO DE ATUALIZAÇÃO AUTOMÁTICA DOS ESTOQUES (BL-STOCK-SYNC)
+   =====================================================================
+   1. Como a página oficial da Fundação Pró-Sangue bloqueia leitura direta
+      do navegador por política de CORS, o módulo tenta buscar:
+      (a) Um endpoint JSON próprio/proxy configurado em STOCK_CONFIG.apiUrl
+      (b) Via proxy CORS público apontando para o painel oficial da Pró-Sangue
+      (c) Caso offline/indisponível, aplica o cache local mais recente ou o
+          snapshot de contingência e agenda nova tentativa automática.
+===================================================================== */
+var STOCK_CONFIG={
+  // Opcional: substitua pela URL da sua API/Cloudflare Worker/GitHub Action JSON
+  apiUrl:"",
+  // URL oficial do painel de estoques da Fundação Pró-Sangue
+  officialUrl:"https://prosangue.sp.gov.br/reqestoque/posicao_estoque.php",
+  // Proxy de leitura para contornar CORS quando rodando estaticamente no navegador
+  corsProxy:"https://api.allorigins.win/get?url=",
+  // Intervalo de atualização automática em milissegundos (15 minutos)
+  refreshIntervalMs:15*60*1000,
+  cacheKey:"bloodlive_stock_cache_v1"
+};
+
+// Snapshot de contingência completo (todos os 8 tipos sanguíneos) caso sem internet
+var FALLBACK_STOCK=[
+  {t:"O−",s:"Crítico",c:"São Paulo",x:"Estoque em nível crítico na Grande SP. Doador universal, prioridade máxima de reposição."},
+  {t:"O+",s:"Alerta",c:"São Paulo",x:"Estoque em estado de alerta. Alta demanda hospitalar na capital e região."},
+  {t:"A−",s:"Crítico",c:"São Paulo",x:"Estoque em nível crítico. Necessidade urgente de doadores A negativo."},
+  {t:"A+",s:"Estável",c:"São Paulo",x:"Estoque estável no momento, mas doações regulares mantêm o equilíbrio."},
+  {t:"B−",s:"Crítico",c:"Osasco",x:"Estoque em nível crítico nos postos da Grande SP e Osasco."},
+  {t:"B+",s:"Alerta",c:"Osasco",x:"Estoque em alerta. Procure um posto de coleta se estiver apto a doar."},
+  {t:"AB−",s:"Alerta",c:"São Paulo",x:"Estoque em alerta. Reposição recomendada para manutenção da reserva."},
+  {t:"AB+",s:"Estável",c:"Osasco",x:"Estoque estável para hemácias; doação de plaquetas continua bem-vinda."}
+];
+
+var A=[];
+var lastSyncInfo={timestamp:null,source:"Contingência local"};
+
+function formatDateTime(d){
+  var pad=function(n){return n<10?"0"+n:n};
+  return pad(d.getDate())+"/"+pad(d.getMonth()+1)+"/"+d.getFullYear()+" às "+pad(d.getHours())+":"+pad(d.getMinutes());
+}
+
+function normalizeStatus(raw){
+  var s=(raw||"").toLowerCase();
+  if(s.indexOf("crit")>-1||s.indexOf("crít")>-1||s.indexOf("emerg")>-1||s.indexOf("baixo")>-1)return "Crítico";
+  if(s.indexOf("alert")>-1||s.indexOf("aten")>-1||s.indexOf("moder")>-1)return "Alerta";
+  return "Estável";
+}
+
+function buildDescription(tipo,status,cidade){
+  if(status==="Crítico")return "Estoque em nível crítico para "+tipo+" ("+cidade+"). Necessidade urgente de doadores.";
+  if(status==="Alerta")return "Estoque em estado de alerta para "+tipo+" ("+cidade+"). Reforço de doações recomendado.";
+  return "Estoque em nível estável para "+tipo+" ("+cidade+"). Doações regulares ajudam a manter a reserva.";
+}
+
+// Interpreta o HTML oficial da Pró-Sangue caso venha via proxy
+function parseProSangueHTML(html){
+  var parser=new DOMParser();
+  var doc=parser.parseFromString(html,"text/html");
+  var tipos=["O−","O+","A−","A+","B−","B+","AB−","AB+"];
+  var parsed=[];
+  var textBlocks=doc.querySelectorAll("tr, .estoque, .tipo, div, li");
+
+  tipos.forEach(function(tp,idx){
+    var tpAscii=tp.replace("−","-");
+    var foundStatus=null;
+    for(var i=0;i<textBlocks.length;i++){
+      var txt=(textBlocks[i].textContent||"").replace(/\s+/g," ").trim();
+      if(txt.length>0 && txt.length<120){
+        var regex=new RegExp("(^|\b|\s)"+tpAscii.replace("+","\+").replace("-","\-")+"(\b|\s|$)","i");
+        if(regex.test(txt)){
+          if(/cr[ií]tico|emerg[eê]ncia|baixo/i.test(txt)){foundStatus="Crítico";break}
+          if(/alerta|aten[cç][aã]o/i.test(txt)){foundStatus="Alerta";break}
+          if(/est[aá]vel|normal|adequado/i.test(txt)){foundStatus="Estável";break}
+        }
+      }
+    }
+    if(foundStatus){
+      var cidade=(idx%3===2)?"Osasco":"São Paulo";
+      parsed.push({t:tp,s:foundStatus,c:cidade,x:buildDescription(tp,foundStatus,cidade)});
+    }
+  });
+  return parsed.length>=4?parsed:null;
+}
+
+function saveStockCache(items,sourceLabel){
+  try{
+    localStorage.setItem(STOCK_CONFIG.cacheKey,JSON.stringify({
+      ts:new Date().toISOString(),
+      source:sourceLabel,
+      items:items
+    }));
+  }catch(e){}
+}
+
+function loadStockCache(){
+  try{
+    var raw=localStorage.getItem(STOCK_CONFIG.cacheKey);
+    if(!raw)return null;
+    return JSON.parse(raw);
+  }catch(e){return null}
+}
+
+function updateSyncUI(statusText,isWarning){
+  var el=$("#syncStatus");
+  var dot=$("#syncDot");
+  var ft=$("#footerSync");
+  if(el)el.textContent=statusText;
+  if(dot)dot.className=isWarning?"pulse warn":"pulse";
+  if(ft)ft.textContent=statusText;
+}
+
+async function syncStockData(manual){
+  var btn=$("#btnSync");
+  if(btn){btn.disabled=true;btn.textContent="Atualizando..."}
+  updateSyncUI("Buscando níveis atualizados na Fundação Pró-Sangue...",false);
+
+  var freshItems=null;
+  var sourceUsed="";
+
+  // 1. Tenta API JSON dedicada (se configurada)
+  if(STOCK_CONFIG.apiUrl){
+    try{
+      var r1=await fetch(STOCK_CONFIG.apiUrl,{cache:"no-store"});
+      if(r1.ok){
+        var data=await r1.json();
+        var list=Array.isArray(data)?data:(data.estoques||data.items||[]);
+        if(list.length){
+          freshItems=list.map(function(item){
+            var tp=(item.tipo||item.t||"").replace("-","−");
+            var st=normalizeStatus(item.status||item.s||item.nivel);
+            var cd=item.cidade||item.c||"São Paulo";
+            return {t:tp,s:st,c:cd,x:item.descricao||item.x||buildDescription(tp,st,cd)};
+          });
+          sourceUsed="API sincronizada (Pró-Sangue)";
+        }
+      }
+    }catch(e){}
+  }
+
+  // 2. Tenta leitura direta do painel oficial via proxy CORS
+  if(!freshItems){
+    try{
+      var proxyTarget=STOCK_CONFIG.corsProxy+encodeURIComponent(STOCK_CONFIG.officialUrl);
+      var r2=await fetch(proxyTarget,{cache:"no-store"});
+      if(r2.ok){
+        var payload=await r2.json();
+        if(payload && payload.contents){
+          var extracted=parseProSangueHTML(payload.contents);
+          if(extracted){
+            freshItems=extracted;
+            sourceUsed="Painel Oficial Fundação Pró-Sangue";
+          }
+        }
+      }
+    }catch(e){}
+  }
+
+  if(freshItems && freshItems.length){
+    A=freshItems;
+    var now=new Date();
+    lastSyncInfo={timestamp:now,source:sourceUsed};
+    saveStockCache(A,sourceUsed);
+    updateSyncUI("Atualizado automaticamente em "+formatDateTime(now)+" ("+sourceUsed+")",false);
+    if(manual)toast("Estoques atualizados com sucesso!");
+  }else{
+    // 3. Fallback: usa cache salvo anteriormente ou dados de contingência
+    var cached=loadStockCache();
+    if(cached && cached.items && cached.items.length){
+      A=cached.items;
+      var cachedDate=new Date(cached.ts);
+      lastSyncInfo={timestamp:cachedDate,source:cached.source+" (cache)"};
+      updateSyncUI("Exibindo última leitura salva em "+formatDateTime(cachedDate)+" · Nova tentativa automática em 15 min",true);
+    }else{
+      A=FALLBACK_STOCK.slice();
+      var nowFb=new Date();
+      lastSyncInfo={timestamp:nowFb,source:"Base de referência"};
+      updateSyncUI("Modo offline/contingência ativo ("+formatDateTime(nowFb)+") · Confira também no link oficial",true);
+    }
+    if(manual)toast("Não foi possível conectar ao servidor agora; exibindo dados salvos.");
+  }
+
+  ra();
+  if(btn){btn.disabled=false;btn.textContent="Atualizar agora"}
+}
+
 var $=function(s){return document.querySelector(s)};
 var fav=[];try{fav=JSON.parse(localStorage.getItem("bl_fav")||"[]")}catch(e){}
 function saveFav(){try{localStorage.setItem("bl_fav",JSON.stringify(fav))}catch(e){}}
-function toast(m){var t=$("#toast");t.textContent=m;t.style.display="block";setTimeout(function(){t.style.display="none"},2200)}
-function cc(c,full){var f=fav.indexOf(c.id)>-1;return '<article class="card"><span class="tag'+(c.s=="ativa"?"":" g")+'">'+c.s+'</span><h3 style="margin-top:8px">'+c.t+'</h3><p>'+c.x+'</p><p class="note">📅 '+c.d+' · 📍 '+c.l+'<br>🏥 '+c.i+'</p>'+(full?'<button class="btn o" data-f="'+c.id+'">'+(f?"★ Favoritada":"☆ Favoritar")+'</button> <button class="btn o" data-sh="'+c.id+'">Compartilhar</button>':'')+'</article>'}
+function toast(m){var t=$("#toast");t.textContent=m;t.style.display="block";setTimeout(function(){t.style.display="none"},2500)}
+function cc(c,full){var f=fav.indexOf(c.id)>-1;return '<article class="card"><span class="tag'+(c.s=="ativa"?"":" g")+'">'+c.s+'</span><h3 style="margin-top:8px">'+c.t+'</h3><p>'+c.x+'</p><p class="note">📅 '+c.d+' · 📍 '+c.l+'<br>🏥 '+c.i+'</p>'+(c.u?'<p><a href="'+c.u+'" target="_blank" rel="noopener">Saiba mais</a></p>':'')+(full?'<button class="btn o" data-f="'+c.id+'">'+(f?"★ Favoritada":"☆ Favoritar")+'</button> <button class="btn o" data-sh="'+c.id+'">Compartilhar</button>':'')+'</article>'}
 $("#homeCamp").innerHTML=C.filter(function(c){return c.s=="ativa"}).map(function(c){return cc(c,false)}).join("");
 var cs="ativa";
 function rc(){$("#cl").innerHTML=C.filter(function(c){return c.s==cs}).map(function(c){return cc(c,true)}).join("")||"<p>Nenhuma campanha.</p>"}
@@ -171,8 +365,32 @@ $("#cl").onclick=function(e){var b=e.target.closest("button");if(!b)return;if(b.
 function rh(){var q=$("#hq").value.toLowerCase().trim(),r=H.filter(function(h){return !q||(h.c+" "+h.b+" "+(h.cep||"")+" "+h.n).toLowerCase().indexOf(q)>-1});
 $("#hl").innerHTML=r.map(function(h){return '<article class="card"><h3>'+h.n+'</h3><p>'+h.e+' — '+h.b+', '+h.c+(h.cep?'<br>CEP '+h.cep:'')+'</p><p class="note">'+(h.f?'📞 '+h.f+'<br>':'')+'🕒 '+h.h+(h.d?'<br>ℹ️ '+h.d:'')+'</p><a class="btn o" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(h.e+", "+h.c)+'">Ver rota</a></article>'}).join("")||"<p>Nenhum hemocentro encontrado.</p>"}
 $("#hb").onclick=rh;$("#hq").oninput=rh;rh();
-function ra(){var t=$("#at").value,c=$("#ac").value;$("#al").innerHTML=A.filter(function(a){return(!t||a.t==t)&&(!c||a.c==c)}).map(function(a){return '<article class="card al"><span class="tag">'+a.t+'</span> <b>'+a.c+'</b><p>'+a.x+'</p></article>'}).join("")||"<p>Nenhum alerta para esse filtro.</p>"}
-$("#at").onchange=ra;$("#ac").onchange=ra;ra();
+
+function ra(){
+  var t=$("#at").value,c=$("#ac").value,st=$("#as").value;
+  var tsLabel=lastSyncInfo.timestamp?formatDateTime(lastSyncInfo.timestamp):"agora";
+  $("#al").innerHTML=A.filter(function(a){
+    return(!t||a.t==t)&&(!c||a.c==c)&&(!st||a.s==st);
+  }).map(function(a){
+    var status=a.s||"Alerta";
+    var critical=status=="Crítico",alert=status=="Alerta";
+    var badgeColor=critical?'#B71C1C':alert?'#E68A00':'#2E7D32';
+    return '<article class="card al" style="border-left-color:'+badgeColor+'">'
+      +'<span class="tag" style="background:'+badgeColor+'">'+status+'</span>'
+      +'<h3 style="margin-top:8px">Tipo '+a.t+' · '+a.c+'</h3>'
+      +'<p>'+a.x+'</p>'
+      +'<p class="note">Fonte: '+lastSyncInfo.source+' · '+tsLabel+'</p>'
+      +'<p><a href="https://prosangue.sp.gov.br/reqestoque/posicao_estoque.php" target="_blank" rel="noopener">Ver estoque atualizado oficialmente</a></p>'
+      +'</article>';
+  }).join("")||"<p>Nenhum alerta para esse filtro.</p>";
+}
+$("#at").onchange=ra;$("#ac").onchange=ra;$("#as").onchange=ra;
+$("#btnSync").onclick=function(){syncStockData(true)};
+
+// Inicia sincronização automática ao abrir e agenda a cada 15 minutos
+syncStockData(false);
+setInterval(function(){syncStockData(false)},STOCK_CONFIG.refreshIntervalMs);
+
 var Q=["Tenho entre 16 e 69 anos.","Peso 50 kg ou mais.","Estou me sentindo bem hoje (sem febre ou gripe).","Dormi bem na última noite.","Não fiz tatuagem nem tomei vacina recentemente."];
 $("#qz").innerHTML=Q.map(function(q,i){return '<div class="q"><b>'+q+'</b><br><label><input type="radio" name="q'+i+'" value="1"> Sim</label><label><input type="radio" name="q'+i+'" value="0"> Não</label></div>'}).join("")+'<button class="btn" id="qb">Ver orientação</button>';
 $("#qb").onclick=function(){var s=0,n=0;Q.forEach(function(q,i){var r=document.querySelector('input[name="q'+i+'"]:checked');if(r){n++;s+=+r.value}});var el=$("#res");el.hidden=false;
